@@ -22,7 +22,7 @@ public class PingRestClient {
     public String callPingOnServer() {
         ResponseEntity<String> responseEntity = restClient.get()
                 .uri("http://localhost:8280/ping")
-//                .attributes(RequestAttributeClientRegistrationIdResolver.clientRegistrationId("demo-client"))
+                .attributes(RequestAttributeClientRegistrationIdResolver.clientRegistrationId("demo-client"))
                 .retrieve()
                 .toEntity(String.class);
 
