@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.client.web.client.RequestAttributeClientRegistrationIdResolver;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -19,7 +20,11 @@ public class PingRestClient {
     }
 
     public String callPingOnServer() {
-        ResponseEntity<String> responseEntity = restClient.get().uri("http://localhost:8280/ping").retrieve().toEntity(String.class);
+        ResponseEntity<String> responseEntity = restClient.get()
+                .uri("http://localhost:8280/ping")
+//                .attributes(RequestAttributeClientRegistrationIdResolver.clientRegistrationId("demo-client"))
+                .retrieve()
+                .toEntity(String.class);
 
         final HttpStatusCode statusCode = responseEntity.getStatusCode();
         if (statusCode.is2xxSuccessful()) {

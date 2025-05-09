@@ -9,15 +9,15 @@ spring:
           demo-client:
             client-id: "demo-client"
             client-secret: "4jyvCXMBIgrSaKthGDEidMpQFniVBDPi"
-            scope:
-              - "openid"
-              - "profile"
+            scope: profile
             authorization-grant-type: "client_credentials"
             provider: "keycloak"
         provider:
           keycloak:
             issuer-uri: "http://localhost:8380/realms/summer"
             jwk-set-uri: "${spring.security.oauth2.client.provider.keycloak.issuer-uri}/protocol/openid-connect/certs"
+            token-uri: "http://localhost:8380/realms/summer/protocol/openid-connect/token"
+            authorization-uri: "http://localhost:8380/realms/summer/protocol/openid-connect/auth"
 
 server:
   port: 8180
