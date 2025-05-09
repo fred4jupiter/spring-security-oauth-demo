@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: "spring-security-oauth-demo"
-
-server:
-  port: 8280

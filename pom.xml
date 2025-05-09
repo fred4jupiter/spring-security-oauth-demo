@@ -12,44 +12,19 @@
 	<groupId>de.fred4jupiter.spring.security.oauth.demo</groupId>
 	<artifactId>spring-security-oauth-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>pom</packaging>
 
-	<name>spring-security-oauth-demo</name>
-
-	<description>Demo project for using spring security OAuth with Keycloak</description>
-
-
-	<scm>
-		<developerConnection>scm:git:https://github.com/fred4jupiter/spring-security-oauth-demo.git</developerConnection>
-		<connection>scm:git:https://github.com/fred4jupiter/spring-security-oauth-demo.git</connection>
-		<url>https://github.com/fred4jupiter/spring-security-oauth-demo</url>
-	</scm>
+	<modules>
+		<module>spring-security-oauth-server</module>
+		<module>spring-security-oauth-client</module>
+	</modules>
 
 	<properties>
 		<java.version>21</java.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
-
 		<!-- testing dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
