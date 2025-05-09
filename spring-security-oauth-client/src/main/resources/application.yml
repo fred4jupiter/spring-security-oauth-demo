@@ -1,6 +1,23 @@
 spring:
   application:
-    name: "spring-security-oauth-demo"
+    name: "spring-security-oauth-client"
+
+  security:
+    oauth2:
+      client:
+        registration:
+          demo-client:
+            client-id: "demo-client"
+            client-secret: "4jyvCXMBIgrSaKthGDEidMpQFniVBDPi"
+            scope:
+              - "openid"
+              - "profile"
+            authorization-grant-type: "client_credentials"
+            provider: "keycloak"
+        provider:
+          keycloak:
+            issuer-uri: "http://localhost:8380/realms/summer"
+            jwk-set-uri: "${spring.security.oauth2.client.provider.keycloak.issuer-uri}/protocol/openid-connect/certs"
 
 server:
   port: 8180
