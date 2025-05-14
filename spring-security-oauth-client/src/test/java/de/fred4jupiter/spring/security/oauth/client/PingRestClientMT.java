@@ -18,9 +18,10 @@ public class PingRestClientMT {
 
     @Test
     void callPingViaRestClient() {
-        String result = pingRestClient.callPingOnServer();
-        LOG.debug("result: {}", result);
-        assertThat(result).isNotBlank();
+        PingResult result = pingRestClient.callPingOnServer();
+        LOG.info("result: {}", result);
+        assertThat(result).isNotNull();
+        assertThat(result.responseText()).isNotBlank();
     }
 
 }

@@ -19,12 +19,12 @@ public class PingRestClient {
         this.restClient = restClient;
     }
 
-    public String callPingOnServer() {
-        ResponseEntity<String> responseEntity = restClient.get()
+    public PingResult callPingOnServer() {
+        ResponseEntity<PingResult> responseEntity = restClient.get()
                 .uri("http://localhost:8280/ping")
                 .attributes(RequestAttributeClientRegistrationIdResolver.clientRegistrationId("demo-client"))
                 .retrieve()
-                .toEntity(String.class);
+                .toEntity(PingResult.class);
 
         final HttpStatusCode statusCode = responseEntity.getStatusCode();
         if (statusCode.is2xxSuccessful()) {
