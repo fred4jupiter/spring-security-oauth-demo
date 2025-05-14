@@ -1,6 +1,6 @@
 # spring-security-oauth-demo
 
-Demo project showing spring security with OAuth and Keycloak.
+Demo project showing spring security configuration with OAuth and Keycloak using `client_credentials`-flow.
 
 ## Important Endpoints
 
@@ -15,3 +15,15 @@ Demo project showing spring security with OAuth and Keycloak.
   * http://localhost:8380/realms/summer/protocol/openid-connect/token
 * Authorization URL
   * http://localhost:8380/realms/summer/protocol/openid-connect/auth
+
+## Initial Keycloak Setup
+
+After starting keycloak with the provided `docker-compose.yml` file you have to setup some things to run the demo:
+
+1. Create a realm `summer`
+2. Create a client called `demo-client`. As credentials choose `Client Id and Secret` and copy the secret to use into the clients project `applicatio.yaml` file at key `client-secret`.
+
+
+### demo-client
+
+![demo-client](keycloak/screenshots/demo-client.jpg?raw=true "demo-client")

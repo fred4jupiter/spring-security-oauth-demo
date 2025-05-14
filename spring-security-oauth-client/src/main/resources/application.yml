@@ -8,6 +8,7 @@ spring:
         registration:
           demo-client:
             client-id: "demo-client"
+            client-secret: "<PUT SECRET HERE>"
             scope: openid
             authorization-grant-type: "client_credentials"
             provider: "keycloak"
