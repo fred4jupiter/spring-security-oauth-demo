@@ -8,8 +8,13 @@ spring:
           issuer-uri: "http://localhost:8380/realms/summer"
 
 logging:
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) %highlight([%c]): %highlight(%msg%n%throwable)"
   level:
-    "org.springframework.security": trace
+    root: "WARN"
+    "org.springframework.web": "WARN"
+    "org.springframework.security": "INFO"
+    "de.fred4jupiter.spring.security.oauth.server": "DEBUG"
 
 server:
   port: 8280
