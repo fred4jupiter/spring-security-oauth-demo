@@ -16,6 +16,14 @@ Demo project showing spring security configuration with OAuth and Keycloak using
 * Authorization URL
   * http://localhost:8380/realms/summer/protocol/openid-connect/auth
 
+## Start Keycloak locally
+
+Use the provided `docker-compose.yml` file and issue the following command:
+
+    docker compose up -d
+
+Then login with `admin/admin` at http://localhost:8380/admin/master/console/
+
 ## Initial Keycloak Setup
 
 After starting keycloak with the provided `docker-compose.yml` file you have to setup some things to run the demo:
