@@ -1,5 +1,7 @@
 package de.fred4jupiter.spring.security.oauth.server.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +15,8 @@ import java.util.stream.Collectors;
 
 @Component
 class KeycloakRealmRoleConverter implements Converter<Jwt, JwtAuthenticationToken> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(KeycloakRealmRoleConverter.class);
 
     @Override
     public JwtAuthenticationToken convert(Jwt jwt) {
@@ -43,9 +47,11 @@ class KeycloakRealmRoleConverter implements Converter<Jwt, JwtAuthenticationToke
     }
 
     private Set<SimpleGrantedAuthority> extractClientRoles(Jwt jwt) {
+        final String clientId = jwt.getClaimAsString("client_id");
+        LOG.info("clientId: {}", clientId);
         Map<String, Object> resourceAccess = jwt.getClaimAsMap("resource_access");
         if (resourceAccess != null) {
-            Map<String, Object> bsmukFrontendMap = (Map<String, Object>) resourceAccess.get("demo-client");
+            Map<String, Object> bsmukFrontendMap = (Map<String, Object>) resourceAccess.get(clientId);
             if (bsmukFrontendMap != null) {
                 Collection<String> roles = (Collection<String>) bsmukFrontendMap.get("roles");
                 if (roles != null) {
