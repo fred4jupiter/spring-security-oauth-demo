@@ -1,7 +1,5 @@
 package de.fred4jupiter.spring.security.oauth.server.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,8 +13,6 @@ import java.util.stream.Collectors;
 
 @Component
 class KeycloakRealmRoleConverter implements Converter<Jwt, JwtAuthenticationToken> {
-
-    private static final Logger LOG = LoggerFactory.getLogger(KeycloakRealmRoleConverter.class);
 
     @Override
     public JwtAuthenticationToken convert(Jwt jwt) {
