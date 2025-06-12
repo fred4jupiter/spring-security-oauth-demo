@@ -29,7 +29,17 @@ Then login with `admin/admin` at http://localhost:8380/admin/master/console/
 After starting keycloak with the provided `docker-compose.yml` file you have to setup some things to run the demo:
 
 1. Create a realm `summer`
-2. Create a client called `demo-client`. As credentials choose `Client Id and Secret` and copy the secret to use into the clients project `applicatio.yaml` file at key `client-secret`.
+2. Create a client called `demo-client`. As credentials choose `Client Id and Secret` and copy the secret to use into the clients project `application.yaml` file at key `client-secret`.
+
+## Settings Overview
+
+| Key           | Value                      | alternative Keycloak Variable |
+|---------------|----------------------------|-------------------------------|
+| client id     | demo-client                |                               |
+| client secret | _generate a secret value_   |                               |
+| Root URL      | http://localhost:8380/auth | ${authBaseUrl}                |
+| Home URL      | /realms/summer/demo-client/ |                               |
+
 
 
 ### demo-client
