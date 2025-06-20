@@ -1,0 +1,7 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          demo-client:
+            client-secret: "gW6PDR4uVbbptzIcLMlw4YoJiGQiZlLq"

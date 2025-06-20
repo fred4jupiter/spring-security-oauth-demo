@@ -16,8 +16,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-security-oauth-server</module>
-        <module>spring-security-oauth-client</module>
+        <module>oauth-server</module>
+        <module>oauth-client</module>
     </modules>
 
     <properties>
