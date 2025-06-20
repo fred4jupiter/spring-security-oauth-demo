@@ -20,5 +20,10 @@ services:
     environment:
       KC_BOOTSTRAP_ADMIN_USERNAME: "admin"
       KC_BOOTSTRAP_ADMIN_PASSWORD: "admin"
+      KC_DB: "postgres"
+      KC_DB_URL: "jdbc:postgresql://postgres:5432/postgres"
+      KC_DB_USERNAME: "postgres"
+      KC_DB_PASSWORD: "postgres"
+      KC_HOSTNAME: "localhost"
 volumes:
   db_data:
