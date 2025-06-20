@@ -40,8 +40,16 @@ After starting keycloak with the provided `docker-compose.yml` file you have to 
 | Root URL      | http://localhost:8380/auth | ${authBaseUrl}                |
 | Home URL      | /realms/summer/demo-client/ |                               |
 
+## App URLs
 
+| App        | Port                  | Username | Password
+|------------|-----------------------|-|-
+| Keycloak   | http://localhost:8380 | `admin` | `admin`
+| Prometheus | http://localhost:9090 | |
+| Grafana    | http://localhost:3000 | `admin` | `admin`
+| MailPit    | http://localhost:8025 |  | 
 
 ### demo-client
 
 ![demo-client](keycloak/screenshots/demo-client.jpg?raw=true "demo-client")
+
