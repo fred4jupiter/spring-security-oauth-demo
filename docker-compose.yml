@@ -54,13 +54,6 @@ services:
       - 3000:3000
     volumes:
       - grafana_data:/var/lib/grafana
-#  jaeger:
-#    image: docker.io/jaegertracing/all-in-one:latest
-#    command: --log-level=error
-#    ports:
-#      - "16686:16686"
-#    volumes:
-#      - jaeger_data:/tmp
 
 volumes:
   db_data:
