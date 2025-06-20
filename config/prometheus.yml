@@ -8,6 +8,6 @@ scrape_configs:
     metrics_path: '/metrics'
     scrape_interval: 5s
     static_configs:
-      - targets: ['keycloak:8380']
+      - targets: ['keycloak:9000']
         labels:
           application: 'Keycloak'
