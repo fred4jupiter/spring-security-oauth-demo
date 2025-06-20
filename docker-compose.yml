@@ -25,5 +25,7 @@ services:
       KC_DB_USERNAME: "postgres"
       KC_DB_PASSWORD: "postgres"
       KC_HOSTNAME: "localhost"
+      KC_HEALTH_ENABLED: "true"
+      KC_METRICS_ENABLED: "true"
 volumes:
   db_data:
