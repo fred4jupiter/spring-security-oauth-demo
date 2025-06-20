@@ -1,4 +1,9 @@
 services:
+  mail:
+    image: docker.io/axllent/mailpit:latest
+    ports:
+      - "8025:8025" # Web UI Port
+      - "1025:1025" # SMTP Port
   postgres:
     image: "postgres:17"
     ports:
@@ -24,7 +29,7 @@ services:
       KC_DB_URL: "jdbc:postgresql://postgres:5432/postgres"
       KC_DB_USERNAME: "postgres"
       KC_DB_PASSWORD: "postgres"
-      KC_HOSTNAME: "localhost"
+      KC_HOSTNAME: "http://localhost:8380"
       KC_HEALTH_ENABLED: "true"
       KC_METRICS_ENABLED: "true"
   prometheus:
@@ -49,8 +54,16 @@ services:
       - 3000:3000
     volumes:
       - grafana_data:/var/lib/grafana
+#  jaeger:
+#    image: docker.io/jaegertracing/all-in-one:latest
+#    command: --log-level=error
+#    ports:
+#      - "16686:16686"
+#    volumes:
+#      - jaeger_data:/tmp
 
 volumes:
   db_data:
   prometheus_data:
   grafana_data:
+  jaeger_data:
