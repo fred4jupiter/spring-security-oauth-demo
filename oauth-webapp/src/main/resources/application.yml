@@ -1,19 +1,22 @@
 spring:
   application:
     name: "spring-security-oauth-webapp"
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          oauth-webapp:
-#            clientId: "oauth-webapp"
-#            clientSecret: "Kas26T49Yo1cCdk14bBUWfu5vIz5Q5Rz"
-#            authorization-grant-type: "authorization_code"
-#            redirect-uri: "http://localhost:8580/home"
-#            provider: "keycloak"
-#        provider:
-#          keycloak:
-#            issuer-uri: "http://localhost:8380/realms/summer"
+  security:
+    oauth2:
+      client:
+        registration:
+          oauth-webapp:
+            clientId: "oauth-webapp"
+            clientSecret: "Kas26T49Yo1cCdk14bBUWfu5vIz5Q5Rz"
+            authorization-grant-type: "authorization_code"
+            scope:
+              - openid
+              - profile
+              - roles
+            provider: "keycloak"
+        provider:
+          keycloak:
+            issuer-uri: "http://localhost:8380/realms/summer"
 
 logging:
   pattern:
@@ -21,7 +24,7 @@ logging:
   level:
     root: "WARN"
     "org.springframework.web": "WARN"
-    "org.springframework.security": "INFO"
+    "org.springframework.security": "DEBUG"
     "de.fred4jupiter.spring.security.oauth.webapp": "DEBUG"
 
 server:
