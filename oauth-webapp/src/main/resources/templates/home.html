@@ -7,6 +7,14 @@
 <div layout:fragment="content">
 	<h1>Home</h1>
 	<p th:text="${'Hello ' + username}"></p>
+	<p>Current user has these authorities:</p>
+	<div class="row">
+		<div class="col-auto">
+			<ul class="list-group" th:each="grantedAuthority : ${authorities}">
+				<li class="list-group-item" th:text="${grantedAuthority}"></li>
+			</ul>
+		</div>
+	</div>
 </div>
 </body>
 </html>

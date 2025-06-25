@@ -15,6 +15,7 @@ public class HomeController {
         Object username = oAuth2AuthenticationToken.getPrincipal().getAttribute("preferred_username");
 
         model.addAttribute("username", username);
+        model.addAttribute("authorities", oAuth2AuthenticationToken.getAuthorities());
         return "home";
     }
 }
