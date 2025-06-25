@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: "spring-security-oauth-webapp"
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          oauth-webapp:
+#            clientId: "oauth-webapp"
+#            clientSecret: "Kas26T49Yo1cCdk14bBUWfu5vIz5Q5Rz"
+#            authorization-grant-type: "authorization_code"
+#            redirect-uri: "http://localhost:8580/home"
+#            provider: "keycloak"
+#        provider:
+#          keycloak:
+#            issuer-uri: "http://localhost:8380/realms/summer"
+
+logging:
+  pattern:
+    console: "%black(%d{ISO8601}) %highlight(%-5level) %highlight([%c]): %highlight(%msg%n%throwable)"
+  level:
+    root: "WARN"
+    "org.springframework.web": "WARN"
+    "org.springframework.security": "INFO"
+    "de.fred4jupiter.spring.security.oauth.webapp": "DEBUG"
+
+server:
+  port: 8580

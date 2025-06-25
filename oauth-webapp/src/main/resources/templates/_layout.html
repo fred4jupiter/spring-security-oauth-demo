@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" lang="de">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">OAuth WebApp</title>
+
+		<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+	</head>
+	<body>
+		<nav th:replace="~{_navigation :: menu}"></nav>
+		<div class="container mt-3" role="main">
+            <div th:replace="~{fragments/alert :: alert_headline}"></div>
+			<div layout:fragment="content" th:remove="tag">Content Placeholder</div>
+		</div>
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+		<th:block layout:fragment="scripts"></th:block>
+	</body>
+</html>
