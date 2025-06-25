@@ -20,8 +20,10 @@
                         <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
                     </li>
                     <li th:if="${@webSecurityUtil.isUserLoggedIn()}" class="nav-item">
-<!--                        <a class="nav-link active" aria-current="page" href="http://localhost:8380/realms/summer/protocol/openid-connect/logout">Logout</a>-->
                         <a class="nav-link active" aria-current="page" th:href="@{/logout}">Logout</a>
+                    </li>
+                    <li th:if="${@webSecurityUtil.isUserLoggedIn()}" class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://localhost:8380/realms/summer/protocol/openid-connect/logout">Logout at Keycloak</a>
                     </li>
                 </ul>
             </div>

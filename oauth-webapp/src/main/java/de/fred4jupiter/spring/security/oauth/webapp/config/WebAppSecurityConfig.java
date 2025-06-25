@@ -18,7 +18,6 @@ public class WebAppSecurityConfig {
                         .requestMatchers("/", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .logout((logout) -> logout.logoutSuccessUrl("/"))
                 .oauth2Login(Customizer.withDefaults())
                 .oidcLogout((logout) -> logout
                         .backChannel(Customizer.withDefaults())
