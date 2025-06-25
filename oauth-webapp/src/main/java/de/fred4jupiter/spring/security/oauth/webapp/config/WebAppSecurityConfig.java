@@ -18,10 +18,12 @@ public class WebAppSecurityConfig {
                         .requestMatchers("/", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
-//                .exceptionHandling(e -> e
-//                        .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-//                )
-                .oauth2Login(Customizer.withDefaults());
+                .logout((logout) -> logout.logoutSuccessUrl("/"))
+                .oauth2Login(Customizer.withDefaults())
+                .oidcLogout((logout) -> logout
+                        .backChannel(Customizer.withDefaults())
+                );
         return http.build();
     }
+
 }
