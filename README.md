@@ -40,12 +40,14 @@ After starting keycloak with the provided `docker-compose.yml` file you have to 
 
 ## App URLs
 
-| App        | Port                  | Username | Password |
-|------------|-----------------------|----------|----------|
-| Keycloak   | http://localhost:8380 | `admin`  | `admin`  |
-| Prometheus | http://localhost:9090 | --       | --       |
-| Grafana    | http://localhost:3000 | `admin`  | `admin`  |
-| MailPit    | http://localhost:8025 | --       | --       |
+| App          | Port                  | Username | Password | Comment                        |
+|--------------|-----------------------|----------|----------|--------------------------------|
+| Keycloak     | http://localhost:8380 | `admin`  | `admin`  |                                |
+| Prometheus   | http://localhost:9090 | --       | --       |                                |
+| Grafana      | http://localhost:3000 | `admin`  | `admin`  |                                |
+| MailPit      | http://localhost:8025 | --       | --       |                                |
+| OAuth Server | http://localhost:8280 |          |          | Shows client credentials flow  |
+| OAuth WebApp | http://localhost:8580 |          |          | Shows authentication code flow |
 
 ### demo-client
 
