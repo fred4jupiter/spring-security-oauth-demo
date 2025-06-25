@@ -20,6 +20,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // This is a configuration for serving stateless REST endpoints.
+
         return http.cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/**"))
                 .authorizeHttpRequests(httpRequests -> httpRequests.anyRequest().authenticated())
