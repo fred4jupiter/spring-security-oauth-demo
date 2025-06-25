@@ -9,6 +9,7 @@ spring:
             clientId: "oauth-webapp"
             clientSecret: "Kas26T49Yo1cCdk14bBUWfu5vIz5Q5Rz"
             authorization-grant-type: "authorization_code"
+            redirect-uri: "http://localhost:8580/login/oauth2/code/oauth-webapp"
             scope:
               - openid
               - profile
