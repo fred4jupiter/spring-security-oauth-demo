@@ -1,6 +1,8 @@
 spring:
   application:
     name: "spring-security-oauth-webapp"
+  thymeleaf:
+    cache: false
   security:
     oauth2:
       client:
