@@ -12,10 +12,9 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model, OAuth2AuthenticationToken oAuth2AuthenticationToken) {
-        Object username = oAuth2AuthenticationToken.getPrincipal().getAttribute("preferred_username");
-
-        model.addAttribute("username", username);
+        model.addAttribute("username", oAuth2AuthenticationToken.getPrincipal().getAttribute("preferred_username"));
         model.addAttribute("authorities", oAuth2AuthenticationToken.getAuthorities());
+        model.addAttribute("name", oAuth2AuthenticationToken.getPrincipal().getAttribute("name"));
         return "home";
     }
 }
