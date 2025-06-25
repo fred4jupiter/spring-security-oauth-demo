@@ -33,21 +33,19 @@ After starting keycloak with the provided `docker-compose.yml` file you have to 
 
 ## Settings Overview
 
-| Key           | Value                      | alternative Keycloak Variable |
-|---------------|----------------------------|-------------------------------|
-| client id     | demo-client                |                               |
-| client secret | _generate a secret value_   |                               |
-| Root URL      | http://localhost:8380/auth | ${authBaseUrl}                |
-| Home URL      | /realms/summer/demo-client/ |                               |
+| Key           | Value                      |
+|---------------|----------------------------|
+| client id     | demo-client                |
+| client secret | _generate a secret value_   |
 
 ## App URLs
 
-| App        | Port                  | Username | Password
-|------------|-----------------------|-|-
-| Keycloak   | http://localhost:8380 | `admin` | `admin`
-| Prometheus | http://localhost:9090 | |
-| Grafana    | http://localhost:3000 | `admin` | `admin`
-| MailPit    | http://localhost:8025 |  | 
+| App        | Port                  | Username | Password |
+|------------|-----------------------|----------|----------|
+| Keycloak   | http://localhost:8380 | `admin`  | `admin`  |
+| Prometheus | http://localhost:9090 | --       | --       |
+| Grafana    | http://localhost:3000 | `admin`  | `admin`  |
+| MailPit    | http://localhost:8025 | --       | --       |
 
 ### demo-client
 
