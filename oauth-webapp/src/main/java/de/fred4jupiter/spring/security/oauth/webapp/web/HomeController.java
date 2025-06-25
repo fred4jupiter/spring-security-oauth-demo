@@ -7,6 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/home")
 public class HomeController {
@@ -16,6 +19,9 @@ public class HomeController {
         model.addAttribute("username", user.getUserInfo().getClaimAsString("preferred_username"));
         model.addAttribute("authorities", user.getAuthorities());
         model.addAttribute("name", user.getUserInfo().getClaimAsString("name"));
+
+        List<ClaimEntry> claimEntries = user.getClaims().entrySet().stream().map(entry -> new ClaimEntry(entry.getKey(), entry.getValue())).toList();
+        model.addAttribute("claimEntries", claimEntries);
         return "home";
     }
 }
