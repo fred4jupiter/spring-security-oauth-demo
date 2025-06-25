@@ -15,6 +15,7 @@ public class WebAppSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
 //                .exceptionHandling(e -> e
