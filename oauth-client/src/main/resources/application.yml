@@ -27,3 +27,14 @@ logging:
 
 server:
   port: 8180
+
+# ------------------------------------------------------------------------
+
+
+client:
+  keycloak-client-enabled: true
+  keycloak-admin-client:
+    server-url: "http://localhost:8380/realms/summer/protocol/openid-connect/auth"
+    realm: summer
+    client-id: keycloak-admin-client
+    client-secret: "HvHKr1w6yTiJsiAjxGhxo6rHlfjUxxYu"
