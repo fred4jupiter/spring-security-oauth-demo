@@ -2,31 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{_layout}">
 <head>
 	<title>Home</title>
+	<link rel="stylesheet" th:href="@{/bootstrap-table/bootstrap-table.min.css}">
+	<link rel="stylesheet" th:href="@{/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.css}">
 </head>
 <body>
 <div layout:fragment="content">
 	<h1>Home</h1>
 	<p th:text="${'Hello ' + username}"></p>
 	<p th:text="${'Name: ' + name}"></p>
-	<p>Current user has these authorities:</p>
+	<p th:text="${'Authorities: ' + authorities}"></p>
 	<div class="row">
-		<div class="col-auto">
-			<ul class="list-group" th:each="grantedAuthority : ${authorities}">
-				<li class="list-group-item" th:text="${grantedAuthority}"></li>
-			</ul>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-auto">
-			<table class="table">
+		<div class="col-auto table-responsive">
+			<table class="table table-condensed table-striped table-responsive" data-toggle="table" data-pagination="true"
+				   data-page-size="20" data-sortable="true" data-filter-control="true" data-show-search-clear-button="true">
 				<thead>
 					<tr>
-						<th scope="col">Claim</th>
-						<th scope="col">Value</th>
+						<th data-field="claim" data-sortable="true" data-filter-control="input" scope="col">Claim</th>
+						<th data-field="value" data-sortable="true" data-filter-control="input" scope="col">Value</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="claimEntry : ${claimEntries}">
+					<tr data-filter-control="true" th:each="claimEntry : ${claimEntries}">
 						<td th:text="${claimEntry.key()}"></td>
 						<td th:text="${claimEntry.value()}"></td>
 					</tr>
@@ -35,5 +31,10 @@
 		</div>
 	</div>
 </div>
+<th:block layout:fragment="scripts">
+	<script th:src="@{/bootstrap-table/bootstrap-table.min.js}"></script>
+	<script th:src="@{/bootstrap-table/extensions/multiple-sort/bootstrap-table-multiple-sort.js}"></script>
+	<script th:src="@{/bootstrap-table/extensions/filter-control/bootstrap-table-filter-control.js}"></script>
+</th:block>
 </body>
 </html>

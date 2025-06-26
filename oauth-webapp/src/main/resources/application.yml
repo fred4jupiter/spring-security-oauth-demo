@@ -16,6 +16,7 @@ spring:
               - openid
               - profile
               - roles
+              - phone
             provider: "keycloak"
         provider:
           keycloak:
