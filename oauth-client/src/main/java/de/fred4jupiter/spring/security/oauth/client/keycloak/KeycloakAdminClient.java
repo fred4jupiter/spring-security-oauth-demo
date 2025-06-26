@@ -2,6 +2,7 @@ package de.fred4jupiter.spring.security.oauth.client.keycloak;
 
 import de.fred4jupiter.spring.security.oauth.client.prop.KeycloakAdminClientProperties;
 import de.fred4jupiter.spring.security.oauth.client.prop.OauthClientProperties;
+import jakarta.annotation.PreDestroy;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.core.Response;
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +10,7 @@ import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.CreatedResponseUtil;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
+import org.keycloak.admin.client.resource.ClientsResource;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.ClientRepresentation;
@@ -37,6 +39,11 @@ public class KeycloakAdminClient {
     public KeycloakAdminClient(OauthClientProperties oauthClientProperties) {
         this.oauthClientProperties = oauthClientProperties;
         this.keycloak = createKeycloak();
+    }
+
+    @PreDestroy
+    public void closeKeycloak() {
+        this.keycloak.close();
     }
 
     private Keycloak createKeycloak() {
@@ -82,6 +89,10 @@ public class KeycloakAdminClient {
         } catch (NotFoundException e) {
             return Optional.empty();
         }
+    }
+
+    public List<String> listAllClients() {
+        return getRealmResource().clients().findAll().stream().map(ClientRepresentation::getClientId).toList();
     }
 
 }
