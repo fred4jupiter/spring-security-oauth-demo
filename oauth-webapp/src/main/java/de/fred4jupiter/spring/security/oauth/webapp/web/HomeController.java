@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,10 @@ public class HomeController {
         model.addAttribute("authorities", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(", ")));
         model.addAttribute("name", user.getUserInfo().getClaimAsString("name"));
 
-        List<ClaimEntry> claimEntries = user.getClaims().entrySet().stream().map(entry -> new ClaimEntry(entry.getKey(), entry.getValue())).toList();
+        List<ClaimEntry> claimEntries = user.getClaims().entrySet().stream()
+                .map(entry -> new ClaimEntry(entry.getKey(), entry.getValue()))
+                .sorted(Comparator.comparing(ClaimEntry::key))
+                .toList();
         model.addAttribute("claimEntries", claimEntries);
         return "home";
     }

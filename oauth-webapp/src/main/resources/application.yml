@@ -14,9 +14,7 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/oauth-webapp"
             scope:
               - openid
-              - profile
-              - roles
-              - phone
+              - oauth-webapp-custom-scope
             provider: "keycloak"
         provider:
           keycloak:
@@ -28,7 +26,7 @@ logging:
   level:
     root: "WARN"
     "org.springframework.web": "WARN"
-    "org.springframework.security": "DEBUG"
+    "org.springframework.security": "WARN"
     "de.fred4jupiter.spring.security.oauth.webapp": "DEBUG"
 
 server:
