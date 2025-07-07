@@ -12,9 +12,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WebIntegrationTest
-public class KeycloakAdminClientIT {
+public class KeycloakAdminClientMT {
 
-    private static final Logger LOG = LoggerFactory.getLogger(KeycloakAdminClientIT.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KeycloakAdminClientMT.class);
 
     @Autowired
     private KeycloakAdminClient keycloakAdminClient;
