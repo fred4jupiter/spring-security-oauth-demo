@@ -33,12 +33,15 @@ services:
 #      KC_HOSTNAME: "http://localhost:8380"
       KC_HEALTH_ENABLED: "true"
       KC_METRICS_ENABLED: "true"
+      KC_CACHE_METRICS_HISTOGRAMS_ENABLED: "true"
+      KC_HTTP_METRICS_HISTOGRAMS_ENABLED: "true"
+      KC_HTTP_METRICS_SLOS: "true"
   prometheus:
     image: prom/prometheus:v3.4.1
     depends_on:
       - keycloak
     volumes:
-      - ./config/prometheus.yml/:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml/:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
