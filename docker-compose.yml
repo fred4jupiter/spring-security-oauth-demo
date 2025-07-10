@@ -35,7 +35,7 @@ services:
       KC_METRICS_ENABLED: "true"
       KC_CACHE_METRICS_HISTOGRAMS_ENABLED: "true"
       KC_HTTP_METRICS_HISTOGRAMS_ENABLED: "true"
-      KC_HTTP_METRICS_SLOS: "true"
+      KC_HTTP_METRICS_SLOS: "5,10,25,50,250,500,1000,2500,5000,10000"
   prometheus:
     image: prom/prometheus:v3.4.1
     depends_on:
