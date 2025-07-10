@@ -153,6 +153,200 @@
       ],
       "title": "Availability within 30 days",
       "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Request latency of authentication requests that completed within 250 ms",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(\r\n  rate(\r\n    http_server_requests_seconds_bucket{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      le=\"0.25\", \r\n      application=\"Keycloak\"}\r\n    [$__range] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) \r\n/\r\nsum(\r\n  rate(\r\n    http_server_requests_seconds_count{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      application=\"Keycloak\"}\r\n    [$__range] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) ",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
+        }
+      ],
+      "title": "Authentication Request Latency under 250 ms",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "calculates the percentage of authentication requests that returned a server side error for all authentication requests, targeting a particular namespace, over the selected time range.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum(\r\n  rate(\r\n    http_server_requests_seconds_count{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      outcome=\"SERVER_ERROR\", \r\n      application=\"Keycloak\"}\r\n    [$__range] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) \r\n/\r\nsum(\r\n  rate(\r\n    http_server_requests_seconds_count{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      application=\"Keycloak\"}\r\n    [$__range] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) ",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
+        }
+      ],
+      "title": "Errors for authentication requests",
+      "type": "timeseries"
     }
   ],
   "schemaVersion": 41,
@@ -161,13 +355,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Experimental",
   "uid": "a383f54e-89dc-4fd7-93fd-4277bbb9d6e3",
-  "version": 3,
+  "version": 12,
   "weekStart": ""
 }

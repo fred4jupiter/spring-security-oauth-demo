@@ -1,0 +1,182 @@
+apiVersion: 1
+groups:
+    - orgId: 1
+      name: evaluation-1m
+      folder: errors
+      interval: 1m
+      rules:
+        - uid: ceriodlkgq5tsc
+          title: alert-errors-in-authentication-requests-of-last-30-days-under-98-percent
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: cepigtrxbfw8wc
+              model:
+                editorMode: code
+                expr: "sum(\r\n  rate(\r\n    http_server_requests_seconds_count{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      outcome=\"SERVER_ERROR\", \r\n      application=\"Keycloak\"}\r\n    [30d] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) \r\n/\r\nsum(\r\n  rate(\r\n    http_server_requests_seconds_count{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      application=\"Keycloak\"}\r\n    [30d] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) "
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 0.98
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: a383f54e-89dc-4fd7-93fd-4277bbb9d6e3
+          panelId: 3
+          noDataState: NoData
+          execErrState: Error
+          for: 1m
+          keepFiringFor: 1s
+          annotations:
+            __dashboardUid__: a383f54e-89dc-4fd7-93fd-4277bbb9d6e3
+            __panelId__: "3"
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
+    - orgId: 1
+      name: evaluation-1m
+      folder: latency
+      interval: 1m
+      rules:
+        - uid: ferinogs59szkb
+          title: alert-request-authentication-under250ms-lower-than95-percent
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: cepigtrxbfw8wc
+              model:
+                editorMode: code
+                expr: "sum(\r\n  rate(\r\n    http_server_requests_seconds_bucket{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      le=\"0.25\", \r\n      application=\"Keycloak\"}\r\n    [30d] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) \r\n/\r\nsum(\r\n  rate(\r\n    http_server_requests_seconds_count{\r\n      uri=~\"/realms/{realm}/protocol/{protocol}.*|/realms/{realm}/login-actions.*\", \r\n      application=\"Keycloak\"}\r\n    [30d] \r\n  )\r\n) without (le,uri,status,outcome,method,pod,instance) "
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 0.95
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: a383f54e-89dc-4fd7-93fd-4277bbb9d6e3
+          panelId: 2
+          noDataState: NoData
+          execErrState: Error
+          for: 1m
+          keepFiringFor: 5s
+          annotations:
+            __dashboardUid__: a383f54e-89dc-4fd7-93fd-4277bbb9d6e3
+            __panelId__: "2"
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
+    - orgId: 1
+      name: alert-when-under-99.9-availability-within-30-days-reached
+      folder: availability
+      interval: 1m
+      rules:
+        - uid: ceriijjmr4we8a
+          title: Availability under 99,9% within 30 days
+          condition: C
+          data:
+            - refId: A
+              relativeTimeRange:
+                from: 600
+                to: 0
+              datasourceUid: cepigtrxbfw8wc
+              model:
+                editorMode: code
+                expr: "count_over_time(\r\n  sum (up{application=\"Keycloak\"}  > 0)[30d:1s]  \r\n) \r\n/\r\ncount_over_time(vector(1)[30d:1s])"
+                instant: true
+                intervalMs: 1000
+                legendFormat: __auto
+                maxDataPoints: 43200
+                range: false
+                refId: A
+            - refId: C
+              datasourceUid: __expr__
+              model:
+                conditions:
+                    - evaluator:
+                        params:
+                            - 0.999
+                        type: lt
+                      operator:
+                        type: and
+                      query:
+                        params:
+                            - C
+                      reducer:
+                        params: []
+                        type: last
+                      type: query
+                datasource:
+                    type: __expr__
+                    uid: __expr__
+                expression: A
+                intervalMs: 1000
+                maxDataPoints: 43200
+                refId: C
+                type: threshold
+          dashboardUid: a383f54e-89dc-4fd7-93fd-4277bbb9d6e3
+          panelId: 1
+          noDataState: NoData
+          execErrState: Error
+          for: 1m
+          keepFiringFor: 1m
+          annotations:
+            __dashboardUid__: a383f54e-89dc-4fd7-93fd-4277bbb9d6e3
+            __panelId__: "1"
+          isPaused: false
+          notification_settings:
+            receiver: grafana-default-email
